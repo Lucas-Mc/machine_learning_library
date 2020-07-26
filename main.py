@@ -30,7 +30,7 @@ class ParseData():
         # Format data into a better format (1,3072) -> (32,32,3)
         data = {}
         for i in range(temp_data.shape[0]):
-            data[str(i)] = temp_data[i].reshape((3,-1)).T.reshape((32,32,3))
+            data[i] = temp_data[i].reshape((3,-1)).T.reshape((32,32,3))
         filenames = self.data_dict[b'filenames']
         self.dict_values = {
             'batch_label': batch_label,
@@ -46,7 +46,7 @@ class ParseData():
         """
         if ((image_num < 0) or (image_num >= len(self.dict_values['data']))):
             raise Exception('Image number not valid, must be: ({},{})'.format(0,len(self.dict_values['data'])-1))
-        plt.imshow(self.dict_values['data'][str(image_num)])
+        plt.imshow(self.dict_values['data'][image_num])
         plt.show()
 
     def preprocess_data(self):
